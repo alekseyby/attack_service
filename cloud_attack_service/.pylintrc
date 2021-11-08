@@ -1,0 +1,78 @@
+[MASTER]
+
+# A comma-separated list of package or module names from where C extensions may
+# be loaded. Extensions are loading into the active Python interpreter and may
+# run arbitrary code
+extension-pkg-whitelist=lxml,ujson,GeoIP,Crypto
+
+# Add files or directories to the blacklist. They should be base names, not
+# paths.
+ignore=migrations, fab, __pycache__, celerybeat-schedule, requirements.txt, pytest.ini,manage.py
+
+
+# Add files or directories matching the regex patterns to the blacklist. The
+# regex matches against base names, not paths.
+ignore-patterns=^[0-9]{4}_.*.py$,
+                test_.*?py
+
+# Workaround for https://stackoverflow.com/questions/1899436/pylint-unable-to-import-error-how-to-set-pythonpath
+# init-hook='import sys; sys.path.append("apps");'
+
+# List of plugins (as comma separated values of python modules names) to load,
+# usually to register additional checkers.
+load-plugins=pylint_django
+
+
+[MESSAGES CONTROL]
+
+# Disable the message, report, category or checker with the given id(s).
+disable=missing-docstring,
+        broad-except,
+        logging-format-interpolation,
+        relative-import,
+        unused-wildcard-import,
+        too-many-instance-attributes,
+        too-few-public-methods,
+        no-self-use,
+        too-many-locals,
+        too-many-lines,
+        model-missing-unicode,
+        protected-access,
+        unidiomatic-typecheck,
+        invalid-name,
+        deprecated-lambda,
+        arguments-differ,
+        unused-argument,
+        too-many-branches,
+        too-many-statements,
+        too-many-arguments,
+        unsubscriptable-object,
+        too-many-nested-blocks,
+        too-many-ancestors,
+        bad-super-call,
+        wrong-import-order, # admitad import ordering arrangements not compatible with pylint https://admitad-team.mimimi.ninja/admitad-docs/dev/styleguide.html#id8
+        not-an-iterable,  # Workaround for https://github.com/PyCQA/pylint-django/issues/117
+        wildcard-import,
+        fixme,
+        invalid-envvar-default,
+        duplicate-code,
+        abstract-method,
+        unused-import,
+        django-not-configured,
+        cyclic-import,
+
+
+[REPORTS]
+
+# Activate the evaluation score.
+score=no
+reports=no
+
+# Set the output format. Available formats are text, parseable, colorized, json
+output-format=colorized
+
+[FORMAT]
+
+# Maximum number of characters on a single line.
+max-line-length=120
+

@@ -1,0 +1,55 @@
+version: '3.8'
+
+networks:
+  net:
+    driver: bridge
+
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: ./cloud_attack_service/
+    command: /opt/run.sh
+    env_file:
+      - variables/dev.env
+    volumes:
+      - ./cloud_attack_service:/opt/django
+      - ./data_inputs:/data_inputs
+    networks:
+      - net
+    expose:
+      - 8000
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14.0
+    env_file:
+      - variables/dev.env
+    networks:
+      - net
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./__volumes/pg_data:/var/lib/postgresql/data
+
+  nginx:
+    build:
+      dockerfile: Dockerfile.nginx
+      context: ./cloud_attack_service/
+    env_file:
+      - variables/dev.env
+    volumes:
+      - ./cloud_attack_service/static:/var/www/app-static
+    ports:
+      - "8000:80"
+    depends_on:
+      - app
+    networks:
+      - net
+
+volumes:
+  app:
+    driver: local
+  db:
+    driver: local
