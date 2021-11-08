@@ -2,7 +2,7 @@
 
 Service provides 4 urls to
 * Attack (`/api/v1/attack/`) to perform analysis of possible accessed machined by vm_id
-* Deposit (`/api/v1/stats/`) to get stat of API usage
+* Stats (`/api/v1/stats/`) to get stat of API usage
 
 ### API documentation
 #### Attack endpoint
