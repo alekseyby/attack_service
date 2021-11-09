@@ -36,6 +36,9 @@ makemigrations:
 
 
 load_infra:
+	$(_execc) app $(_manage_py) load_cloud_infrastructure -f /$(FILE)
+
+overwrite_infra:
 	$(_execc) app $(_manage_py) load_cloud_infrastructure -d -f /$(FILE)
 
 ###############################################################################

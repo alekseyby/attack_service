@@ -22,3 +22,7 @@ class FireWallRuleDAO:
     @staticmethod
     def get_possible_accessed_tags_by_tags(tags: set) -> set:
         return set(CloudFirewallRule.objects.filter(source_tag__name__in=tags).values_list('dest_tag__name', flat=True))
+
+    @staticmethod
+    def get_possible_attacker_tags_by_tags(tags: set) -> set:
+        return set(CloudFirewallRule.objects.filter(dest_tag__name__in=tags).values_list('source_tag__name', flat=True))

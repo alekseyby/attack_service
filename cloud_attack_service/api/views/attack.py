@@ -27,6 +27,6 @@ class AttackView(views.APIView):
         params_serializer = AttackViewParamsSerializer(data=request.query_params)
         if params_serializer.is_valid():
             machine = params_serializer.data['vm_id']
-            possible_accessed_machines = CloudRelationManager().get_accessable_machines(machine)
-            return response.Response(status=status.HTTP_200_OK, data=possible_accessed_machines)
+            attackers = CloudRelationManager().get_machines_who_can_possible_access_the_vm_by_vm_id(machine)
+            return response.Response(status=status.HTTP_200_OK, data=attackers)
         return response.Response(status=status.HTTP_400_BAD_REQUEST, data=params_serializer.errors)

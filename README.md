@@ -58,3 +58,13 @@ Response example
 * `make linter` - launch linter
 * `make load_infra FILE=${relative_path_to_json_data_input}`
   * example: ` make load_infra FILE=data_inputs/input-4.json`
+* `make overwrite_infra FILE=${relative_path_to_json_data_input}` (DELETES OLD INFRASTRUCTURE BEFORE LOADING)
+  * example: ` make load_infra FILE=data_inputs/input-4.json`
+
+
+
+How to run step-by-step:
+
+1. `docker-compose up` 
+2. `make load_infra FILE=data_inputs/input-4.json` (it's important to use relative path to data_inputs directory)
+3. make requests to endpoints

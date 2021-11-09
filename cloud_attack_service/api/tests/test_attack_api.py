@@ -22,7 +22,7 @@ class AttackApiTestCase(TestCase):
         resp = self.client.get(self.url)
         self.assertEqual(resp.status_code, 400)
 
-    @mock.patch('cloud.services.cloud_relation_manager.CloudRelationManager.get_accessable_machines',
+    @mock.patch('cloud.services.cloud_relation_manager.CloudRelationManager.get_machines_who_can_possible_access_the_vm_by_vm_id',
                 return_value=['a', 'b', ])
     def test_api_service_is_called_if_everything_is_ok(self, manager_mock):
         resp = self.client.get(self.url, {'vm_id': 'test_vm'})

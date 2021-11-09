@@ -14,3 +14,7 @@ class VMTagDAO:
     @staticmethod
     def get_all_tags_by_accessible_tags(tags):
         return set(VMTag.objects.filter(virtual_machines__tags__name__in=tags).values_list('name', flat=True))
+
+    @staticmethod
+    def get_all_tags_by_vm_ids(ids):
+        return set(VMTag.objects.filter(virtual_machines__pk__in=ids).values_list('name', flat=True))

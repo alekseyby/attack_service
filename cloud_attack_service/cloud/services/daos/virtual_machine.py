@@ -30,10 +30,13 @@ class VirtualMachineDAO:
         return VirtualMachine.objects.filter(pk=machine_id).exists()
 
     @staticmethod
-    def get_machines_by_tag_list(tags: set, exclude_machine_id: str) -> set:
-        return set(VirtualMachine.objects.filter(
+    def get_machines_by_tag_list(tags: set, exclude_machine_id: str = None) -> set:
+        qs = VirtualMachine.objects.filter(
             tags__name__in=tags
-        ).exclude(pk=exclude_machine_id).values_list('pk', flat=True))
+        )
+        if exclude_machine_id:
+            qs = qs.exclude(pk=exclude_machine_id)
+        return set(qs.values_list('pk', flat=True))
 
     @staticmethod
     def get_vms_count() -> int:
