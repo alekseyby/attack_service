@@ -1,7 +1,7 @@
 _python = python3
 _manage_py = $(_python) manage.py
 _execc = docker-compose exec
-_pytest = python3 -B -m pytest
+_pytest = python3 -B -m pytest -s -v
 
 ###############################################################################
 #
