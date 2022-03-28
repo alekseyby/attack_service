@@ -7,6 +7,14 @@ class CloudRelationManager:
         self.tag_dao = VMTagDAO()
         self.rule_dao = FireWallRuleDAO()
 
+    def get_all_vms(self) -> list:
+        all_vms = self.vm_dao.get_all_vms()
+        return all_vms
+
+    def delete_all_vms(self) -> list:
+        all_vms = self.vm_dao.delete_all_records()
+        return all_vms
+
     def _get_possible_accessed_tags_by_tags(self, tags: set) -> set:
         rule_tags = self.rule_dao.get_possible_accessed_tags_by_tags(tags)
         machine_tags = self.tag_dao.get_all_tags_by_accessible_tags(rule_tags)

@@ -41,3 +41,7 @@ class VirtualMachineDAO:
     @staticmethod
     def get_vms_count() -> int:
         return VirtualMachine.objects.count()
+
+    @staticmethod
+    def get_all_vms() -> list:
+        return VirtualMachine.objects.all().values()
